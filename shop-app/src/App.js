@@ -19,7 +19,7 @@ export default function App() {
       const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase());
-      // Bug 1 fixed: changed > to >= and < to <= so products at exact boundary prices aren't unfairly excluded
+      // Bug 1 fixed: 
       const matchPrice = p.price >= priceRange.min && p.price <= priceRange.max;
       const matchCategory = category === 'All' || p.category === category;
       return matchSearch && matchPrice && matchCategory;
@@ -33,7 +33,7 @@ export default function App() {
       default: break;
     }
     return list;
-  // Bug 2 fixed: added 'category' to dependency array so the product list actually re-filters when a category button is clicked
+  // Bug 2 fixed: 
 }, [searchQuery, priceRange, sortBy, category]);
 
   function addToCart(product) {
@@ -46,7 +46,7 @@ export default function App() {
   }
 
   function removeFromCart(id) {
-    // Bug 3 fixed: changed === to !== so we keep everything except the item being deleted
+    // Bug 3 fixed: 
     setCartItems(prev => prev.filter(i => i.id !== id));
   }
 
@@ -55,9 +55,9 @@ export default function App() {
     setCartItems(prev => prev.map(i => i.id === id ? { ...i, qty } : i));
   }
 
-  // Bug 4 fixed: changed i.count to i.qty since that's the actual property name we set when adding to cart
+  // Bug 4 fixed: 
   const cartCount = cartItems.reduce((sum, i) => sum + i.qty, 0);
-  // Bug 5 fixed: changed i.productId to i.id since cart items are stored with 'id', not 'productId'
+  // Bug 5 fixed:
   const cartItemIds = new Set(cartItems.map(i => i.id));
 
   return (

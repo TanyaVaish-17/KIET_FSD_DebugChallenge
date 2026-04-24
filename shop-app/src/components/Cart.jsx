@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Cart({ items, onRemove, onClose, onUpdateQty }) {
-  // Bug 6 fixed: changed item.count to item.qty so the total actually multiplies price by the correct quantity
+  // Bug 6 fixed: 
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   return (
@@ -31,7 +31,7 @@ export default function Cart({ items, onRemove, onClose, onUpdateQty }) {
                       <button
                         className="qty-btn"
                         onClick={() => onUpdateQty(item.id, item.qty - 1)}
-                        // Bug 7 fixed: changed <= 0 to <= 1 so the minus button disables at 1, preventing quantity from reaching 0 or below
+                        // Bug 7 fixed: 
                         disabled={item.qty <= 1}
                       >−</button>
                       <span className="qty-value">{item.qty}</span>
